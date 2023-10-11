@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 24d270641f469e44f8d2c3542da8cf9e
+guid: 81279efcf25879346829a1ed1515920d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -71,7 +71,7 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 4
     textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
@@ -137,8 +137,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ba3c4161d7328a040989f34aa2322166
-      internalID: -1024207528
+      spriteID: 5876a2bc3b01f6b4fad04db719004b85
+      internalID: 347005104
       vertices: []
       indices: 
       edges: []
@@ -158,8 +158,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 92a3d3807ebf70344ac4d69c1e13c57d
-      internalID: 822829431
+      spriteID: a6dddada49b24644199b2021e1758280
+      internalID: 2133597117
       vertices: []
       indices: 
       edges: []
@@ -179,8 +179,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c51ec7e1c18729d43a950e5a560ea201
-      internalID: -1532004654
+      spriteID: fb3b8a6ac0f0ebc47b1a40bfaa781f1b
+      internalID: 299151774
       vertices: []
       indices: 
       edges: []
@@ -200,8 +200,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d2880294309db474684386e5387d38dd
-      internalID: 386241399
+      spriteID: d89fd32417c0ac44ca397de445782f7c
+      internalID: -1029159152
       vertices: []
       indices: 
       edges: []
@@ -221,8 +221,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e38b8effca71f5a4ca81bf26c8bc9f6e
-      internalID: 1092677978
+      spriteID: 5b486b17424e12e47802c2aaca2af155
+      internalID: 1023559986
       vertices: []
       indices: 
       edges: []
@@ -242,8 +242,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2ff5b30abc008534ea003bc02eaa8277
-      internalID: 1495979045
+      spriteID: f0c7eb18c0cd7304e84d01869ea11726
+      internalID: -1350720576
       vertices: []
       indices: 
       edges: []
@@ -263,8 +263,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c57f2a29f73bb2c428eafdce6bb0a04c
-      internalID: -1081690105
+      spriteID: 741527225663dcd4cbdd306a03a434bb
+      internalID: -187493086
       vertices: []
       indices: 
       edges: []
@@ -284,8 +284,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2be8a8a506f079d41ad279a3391d8e0f
-      internalID: -866072588
+      spriteID: cd45c4b150fd7dd4583f95011be3a70a
+      internalID: 1408434273
       vertices: []
       indices: 
       edges: []
@@ -305,8 +305,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aa5c810596507024a9408313d402d412
-      internalID: -1008755044
+      spriteID: 5f14ff2bee8c070439251fc39fab7671
+      internalID: 652671609
       vertices: []
       indices: 
       edges: []
@@ -326,8 +326,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f81913dc4597fbb4d8d76f06fb51e1e1
-      internalID: 62466257
+      spriteID: 97e6ac6737429d9438458c2d67ab549d
+      internalID: 1570234959
       vertices: []
       indices: 
       edges: []
@@ -343,16 +343,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Haunted_Candy_Main_Character_0: -1024207528
-      Haunted_Candy_Main_Character_1: 822829431
-      Haunted_Candy_Main_Character_2: -1532004654
-      Haunted_Candy_Main_Character_3: 386241399
-      Haunted_Candy_Main_Character_4: 1092677978
-      Haunted_Candy_Main_Character_5: 1495979045
-      Haunted_Candy_Main_Character_6: -1081690105
-      Haunted_Candy_Main_Character_7: -866072588
-      Haunted_Candy_Main_Character_8: -1008755044
-      Haunted_Candy_Main_Character_9: 62466257
+      Haunted_Candy_Main_Character_0: 347005104
+      Haunted_Candy_Main_Character_1: 2133597117
+      Haunted_Candy_Main_Character_2: 299151774
+      Haunted_Candy_Main_Character_3: -1029159152
+      Haunted_Candy_Main_Character_4: 1023559986
+      Haunted_Candy_Main_Character_5: -1350720576
+      Haunted_Candy_Main_Character_6: -187493086
+      Haunted_Candy_Main_Character_7: 1408434273
+      Haunted_Candy_Main_Character_8: 652671609
+      Haunted_Candy_Main_Character_9: 1570234959
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
