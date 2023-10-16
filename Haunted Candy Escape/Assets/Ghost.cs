@@ -6,11 +6,12 @@ public class Ghost : MonoBehaviour
 {
     Rigidbody2D rb;
     Animator anim;
+    
     public float Jump;
     public float Speed;
-
-    bool isJumping = false;
-
+    public float Scale;
+    private float horizontal;
+    private string Contact;
 
     // Start is called before the first frame update
     void Start()
@@ -21,26 +22,48 @@ public class Ghost : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)) && isJumping == false) {
-            rb.AddForce(Vector2.up * Jump);
-            isJumping = true;
-        }
-        if ((Input.GetKey(KeyCode.A)
-            || Input.GetKey(KeyCode.LeftArrow))) {
 
-            rb.velocity = new Vector2(-Speed, rb.velocity.y);
-        }
-        if ((Input.GetKey(KeyCode.D)
-            || Input.GetKey(KeyCode.RightArrow))) {
-            Debug.Log("hi");
+        //if ((Input.GetKey(KeyCode.A)
+        //    || Input.GetKey(KeyCode.LeftArrow)) && Mathf.Round(rb.velocity.y) == 0) {
+        //    gameObject.transform.localScale = new Vector3(-Scale, Scale, Scale);
 
-            rb.velocity = new Vector2(Speed, rb.velocity.y);
-        }
-        Debug.Log(rb.velocity);
+        //    rb.velocity = new Vector2(-Speed, rb.velocity.y);
+        //}
+        //if ((Input.GetKey(KeyCode.D)
+        //    || Input.GetKey(KeyCode.RightArrow)) && Mathf.Round(rb.velocity.y) == 0) {
+
+        //    gameObject.transform.localScale = new Vector3(Scale, Scale, Scale);
+
+
+        //    rb.velocity = new Vector2(Speed, rb.velocity.y);
+        //}
+        horizontal = Input.GetAxisRaw("Horizontal");
+
     }
-    private void OnCollisionEnter2D(Collision2D collision) {
-        if (collision.gameObject.tag == "Ground") {
-            isJumping = false;
+    private void FixedUpdate()
+    {
+        if (horizontal>0) {
+            gameObject.transform.localScale = new Vector3(Scale, Scale, Scale);
+        }
+        if (horizontal < 0) {
+            gameObject.transform.localScale = new Vector3(-Scale, Scale, Scale);
+        }
+
+        rb.velocity = new Vector2(horizontal * Speed, rb.velocity.y);
+    }
+   
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        foreach (ContactPoint2D contact in collision.contacts) {
+            if (collision.gameObject.tag == "Ground" && contact.normal.y > 0) {
+                // The bottom of the collider was hit
+
+                if ((Input.GetKey(KeyCode.Space)
+                    || Input.GetKey(KeyCode.W)
+                    || Input.GetKey(KeyCode.UpArrow))) {
+                    rb.velocity = new Vector2(rb.velocity.x, Jump);
+                }
+            }
         }
     }
 }
