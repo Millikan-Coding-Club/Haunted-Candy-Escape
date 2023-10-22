@@ -43,6 +43,7 @@ public class Ghost : MonoBehaviour
     private void FixedUpdate()
     {
         if (horizontal>0) {
+            // change direction of ghost
             gameObject.transform.localScale = new Vector3(Scale, Scale, Scale);
         }
         if (horizontal < 0) {
@@ -54,10 +55,11 @@ public class Ghost : MonoBehaviour
    
     private void OnCollisionStay2D(Collision2D collision)
     {
+        Debug.Log(collision.contacts.Length);
         foreach (ContactPoint2D contact in collision.contacts) {
-            if (collision.gameObject.tag == "Ground" && contact.normal.y > 0) {
-                // The bottom of the collider was hit
 
+            if (collision.gameObject.tag == "Ground" && Mathf.Round(contact.normal.y) > 0) {
+                // The bottom of the collider was hit
                 if ((Input.GetKey(KeyCode.Space)
                     || Input.GetKey(KeyCode.W)
                     || Input.GetKey(KeyCode.UpArrow))) {
