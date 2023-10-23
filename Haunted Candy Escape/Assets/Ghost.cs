@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ghost : MonoBehaviour
-{
+public class Ghost : MonoBehaviour {
     Rigidbody2D rb;
     Animator anim;
-    
+
     public float Jump;
     public float Speed;
     public float Scale;
@@ -14,14 +13,12 @@ public class Ghost : MonoBehaviour
     private string Contact;
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
 
         //if ((Input.GetKey(KeyCode.A)
         //    || Input.GetKey(KeyCode.LeftArrow)) && Mathf.Round(rb.velocity.y) == 0) {
@@ -40,9 +37,8 @@ public class Ghost : MonoBehaviour
         horizontal = Input.GetAxisRaw("Horizontal");
 
     }
-    private void FixedUpdate()
-    {
-        if (horizontal>0) {
+    private void FixedUpdate() {
+        if (horizontal > 0) {
             // change direction of ghost
             gameObject.transform.localScale = new Vector3(Scale, Scale, Scale);
         }
@@ -52,13 +48,10 @@ public class Ghost : MonoBehaviour
 
         rb.velocity = new Vector2(horizontal * Speed, rb.velocity.y);
     }
-   
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        Debug.Log(collision.contacts.Length);
-        foreach (ContactPoint2D contact in collision.contacts) {
 
-            if (collision.gameObject.tag == "Ground" && Mathf.Round(contact.normal.y) > 0) {
+    private void OnCollisionStay2D(Collision2D collision) {
+        foreach (ContactPoint2D contact in collision.contacts) {
+            if ((collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Enemy") && Mathf.Round(contact.normal.y) > 0) {
                 // The bottom of the collider was hit
                 if ((Input.GetKey(KeyCode.Space)
                     || Input.GetKey(KeyCode.W)
@@ -68,4 +61,16 @@ public class Ghost : MonoBehaviour
             }
         }
     }
+    private void OnCollisionEnter2D(Collision2D collision) {
+        foreach (ContactPoint2D contact in collision.contacts) {
+            // enemy on top or bottom
+            if (collision.gameObject.tag == "Enemy" && Mathf.Round(contact.normal.y) != 0) {
+                Debug.Log("Kill");
+
+            }
+
+
+        }
+    }
+
 }
