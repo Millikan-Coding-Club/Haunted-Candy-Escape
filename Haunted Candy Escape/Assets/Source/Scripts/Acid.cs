@@ -20,6 +20,6 @@ public class Acid : MonoBehaviour
     {
     }
     private void MoveUp() {
-        gameObject.transform.position = new Vector2(0, gameObject.transform.position.y + Rate);
+        gameObject.transform.position = new Vector2(-0.5f, gameObject.transform.position.y + Rate);
     }
 }
