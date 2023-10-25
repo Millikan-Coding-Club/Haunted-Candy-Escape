@@ -15,6 +15,8 @@ public class Cam : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector3(transform.position.x, player.transform.position.y+yOffset, -10);
+        if (!Ghost.gameOver) {
+            transform.position = new Vector3(transform.position.x, player.transform.position.y + yOffset, -10);
+        }
     }
 }
