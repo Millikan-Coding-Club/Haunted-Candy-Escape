@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -18,12 +19,15 @@ public class Ghost : MonoBehaviour {
     public float Scale;
     private float horizontal;
     private string Contact;
+    public GameObject startCanvas;
 
     // Start is called before the first frame update
     void Start() {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         gameOver = false;
+        Time.timeScale = 0f;
+        startCanvas.SetActive(true);
     }
 
     // Update is called once per frame
@@ -45,6 +49,12 @@ public class Ghost : MonoBehaviour {
         }
     }
 
+    public void StartGame()
+    {
+        Time.timeScale = 1.0f;
+        startCanvas.SetActive(false);
+    }
+
     private void OnCollisionStay2D(Collision2D collision) {
         foreach (ContactPoint2D contact in collision.contacts) {
             if ((collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Enemy") && Mathf.Round(contact.normal.y) > 0) {
@@ -60,11 +70,9 @@ public class Ghost : MonoBehaviour {
     }
     private void OnCollisionEnter2D(Collision2D collision) {
 
-        foreach (ContactPoint2D contact in collision.contacts) {
-            // enemy on top or bottom
-            if (collision.gameObject.tag == "Enemy" && Mathf.Round(contact.normal.y) != 0) {
-                GameOver();
-            }
+        if (collision.gameObject.tag == "Enemy")
+        {
+            GameOver();
         }
     }
     private void OnCollisionExit2D(Collision2D collision)
