@@ -8,6 +8,7 @@ public class Acid : MonoBehaviour
 {
     public float First = 1.0f;
     public float Rate = 0.2f;
+
     public float Time = 0.2f;
     // Start is called before the first frame update
     void Start() {
