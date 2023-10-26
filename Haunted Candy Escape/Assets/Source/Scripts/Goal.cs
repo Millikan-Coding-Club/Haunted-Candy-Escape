@@ -11,15 +11,17 @@ public class Goal : MonoBehaviour {
     private bool Completed = false;
 
     // Start is called before the first frame update
-    void Start() {
+    void Start() 
+    {
         anim = GetComponent<Animator>();
-
     }
 
     // Update is called once per frame
-    void Update() {
+    void Update() 
+    {
 
     }
+    
     private void OnTriggerEnter2D(Collider2D collider) {
         if (collider.gameObject.tag == "Player" && !Completed) {
             Ghost.goals++;
@@ -32,7 +34,9 @@ public class Goal : MonoBehaviour {
             Invoke("PlayAudio", 3);
         }
     }
-    private void PlayAudio() {
+
+    private void PlayAudio() 
+    {
         audioSource.Play();
     }
 }

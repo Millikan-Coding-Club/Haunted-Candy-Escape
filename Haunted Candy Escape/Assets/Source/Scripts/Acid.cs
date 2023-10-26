@@ -18,7 +18,9 @@ public class Acid : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+
     }
+    
     private void MoveUp() {
         gameObject.transform.position = new Vector2(-0.5f, gameObject.transform.position.y + Rate);
     }

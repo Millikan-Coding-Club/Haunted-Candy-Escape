@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-
+using TMPro;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 
 public class Ghost : MonoBehaviour {
     public static bool gameOver = false;
     public static int goals = 0;
+    private float gameRestartRefreshWaitTime = 4.00f;
 
     Rigidbody2D rb;
     Animator anim;
@@ -22,7 +25,8 @@ public class Ghost : MonoBehaviour {
     public GameObject startCanvas;
 
     // Start is called before the first frame update
-    void Start() {
+    void Start() 
+    {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         gameOver = false;
@@ -31,11 +35,13 @@ public class Ghost : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update() {
+    void Update() 
+    {
         horizontal = Input.GetAxisRaw("Horizontal");
     }
 
-    private void FixedUpdate() {
+    private void FixedUpdate() 
+    {
         if (!gameOver) {
             if (horizontal > 0) {
                 // change direction of ghost
@@ -68,13 +74,16 @@ public class Ghost : MonoBehaviour {
             }
         }
     }
-    private void OnCollisionEnter2D(Collision2D collision) {
+
+    private void OnCollisionEnter2D(Collision2D collision) 
+    {
 
         if (collision.gameObject.tag == "Enemy")
         {
             GameOver();
         }
     }
+
     private void OnCollisionExit2D(Collision2D collision)
     {
         anim.SetBool("Jumping", true);
@@ -88,5 +97,20 @@ public class Ghost : MonoBehaviour {
 
         gameOver = true;
         rb.velocity = new Vector2(rb.velocity.y, 5);
+        GameRestart();
+    }
+
+    IEnumerator GameRestartRoutine()
+    {
+        // Wait for gameRestartRefreshRate
+        yield return new WaitForSeconds(gameRestartRefreshWaitTime);
+
+        // Searches and reloads current game scene
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    private void GameRestart()
+    {
+        StartCoroutine(GameRestartRoutine());
     }
 }
