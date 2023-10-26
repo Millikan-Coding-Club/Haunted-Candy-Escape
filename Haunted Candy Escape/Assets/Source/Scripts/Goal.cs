@@ -30,7 +30,7 @@ public class Goal : MonoBehaviour {
 
             Completed = true;
             audioSource.Stop();
-            audioSource.PlayOneShot(PortalClip, 1f);
+            audioSource.PlayOneShot(PortalClip, 6f);
             Invoke("PlayAudio", 3);
         }
     }

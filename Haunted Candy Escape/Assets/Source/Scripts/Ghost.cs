@@ -16,13 +16,15 @@ public class Ghost : MonoBehaviour {
     Animator anim;
     public AudioSource audioSource;
     public AudioClip DeathClip;
+    public AudioClip VictoryClip;
 
     public float Jump;
     public float Speed;
     public float Scale;
     private float horizontal;
-    private string Contact;
     public GameObject startCanvas;
+    public GameObject gameOverCanvas;
+    public TextMeshProUGUI gameOverText;
 
     // Start is called before the first frame update
     void Start() 
@@ -31,7 +33,9 @@ public class Ghost : MonoBehaviour {
         anim = GetComponent<Animator>();
         gameOver = false;
         Time.timeScale = 0f;
+        gameOverCanvas.SetActive(false);
         startCanvas.SetActive(true);
+        goals = 0;
     }
 
     // Update is called once per frame
@@ -51,7 +55,9 @@ public class Ghost : MonoBehaviour {
                 gameObject.transform.localScale = new Vector3(-Scale, Scale, Scale);
             }
             rb.velocity = new Vector2(horizontal * Speed, rb.velocity.y);
-
+            if (goals >=3) {
+                GameOver();
+            }
         }
     }
 
@@ -78,8 +84,14 @@ public class Ghost : MonoBehaviour {
     private void OnCollisionEnter2D(Collision2D collision) 
     {
 
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Enemy" && !gameOver)
         {
+            audioSource.Stop();
+            anim.SetBool("Jumping", false);
+            GetComponent<Collider2D>().enabled = false;
+            audioSource.PlayOneShot(DeathClip, 0.7f);
+            rb.velocity = new Vector2(rb.velocity.y, 5);
+
             GameOver();
         }
     }
@@ -90,27 +102,41 @@ public class Ghost : MonoBehaviour {
     }
 
     private void GameOver() {
-        audioSource.Stop();
-        anim.SetBool("Jumping", false);
-        GetComponent<Collider2D>().enabled = false;
-        audioSource.PlayOneShot(DeathClip, 0.7f);
-
         gameOver = true;
-        rb.velocity = new Vector2(rb.velocity.y, 5);
-        GameRestart();
+        Invoke("GameOverScreen", 2);
+    }
+    private void GameOverScreen() {
+        if (goals == 0) {
+            gameOverText.text = "Better Luck Next Time!";
+        }
+        else if (goals == 1) {
+            audioSource.PlayOneShot(VictoryClip, 1f);
+            gameOverText.text = "Congratulations, you scored 1 goal!";
+        }
+        else if (goals == 2) {
+            audioSource.PlayOneShot(VictoryClip, 1f);
+            gameOverText.text = "Congratulations, you scored 2 goals!";
+        }
+        else if (goals == 3) {
+            audioSource.PlayOneShot(VictoryClip, 1f);
+            gameOverText.text = "Congratulations, you scored 3 goals!";
+        }
+        gameOverCanvas.SetActive(true);
     }
 
-    IEnumerator GameRestartRoutine()
-    {
-        // Wait for gameRestartRefreshRate
-        yield return new WaitForSeconds(gameRestartRefreshWaitTime);
+    //IEnumerator GameRestartRoutine()
+    //{
+    //    // Wait for gameRestartRefreshRate
+    //    yield return new WaitForSeconds(gameRestartRefreshWaitTime);
 
-        // Searches and reloads current game scene
+    //    // Searches and reloads current game scene
+    //    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    //}
+
+    public void GameRestart()
+    {
+        //StartCoroutine(GameRestartRoutine());
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
 
-    private void GameRestart()
-    {
-        StartCoroutine(GameRestartRoutine());
     }
 }
