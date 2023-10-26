@@ -5,31 +5,23 @@ using UnityEngine.Tilemaps;
 
 public class Traps : MonoBehaviour
 {
-    public TileBase[] tiles;
+    public Transform Spike;
+    public float TimeBeforeStart;
+    public float TimeInterval;
 
     // Start is called before the first frame update
     void Start()
     {
-        Tilemap tilemap = GetComponent<Tilemap>();
-
-        BoundsInt bounds = tilemap.cellBounds;
-        TileBase[] allTiles = tilemap.GetTilesBlock(bounds);
-
-        for (int x = 0; x<bounds.size.x; x++) {
-              for (int y = 0; y<bounds.size.y; y++) {
-                  TileBase tile = allTiles[x + y * bounds.size.x];
-                  if (tile != null) {
-                      Debug.Log("x:" + x + " y:" + y + " tile:" + tile.name);
-                  } else {
-                      Debug.Log("x:" + x + " y:" + y + " tile: (null)");
-                  }
-              }
-        } 
+        InvokeRepeating("Fire", TimeBeforeStart, TimeInterval);
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    private void Fire() {
+        Transform spike = Instantiate(Spike, transform.position, Spike.transform.rotation);
     }
 }
