@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 public class Ghost : MonoBehaviour {
     public static bool gameOver = false;
-    public static int goals = 0;
+    public static int goals;
 
     Rigidbody2D rb;
     Animator anim;
@@ -41,6 +41,10 @@ public class Ghost : MonoBehaviour {
     void Update() 
     {
         horizontal = Input.GetAxisRaw("Horizontal");
+        Debug.Log(goals);
+        if (goals >= 3) {
+            GameOver();
+        }
     }
 
     private void FixedUpdate() 
@@ -54,9 +58,7 @@ public class Ghost : MonoBehaviour {
                 gameObject.transform.localScale = new Vector3(-Scale, Scale, Scale);
             }
             rb.velocity = new Vector2(horizontal * Speed, rb.velocity.y);
-            if (goals >=3) {
-                GameOver();
-            }
+            
         }
     }
 
@@ -109,16 +111,16 @@ public class Ghost : MonoBehaviour {
             gameOverText.text = "Better Luck Next Time!";
         }
         else if (goals == 1) {
-            audioSource.PlayOneShot(VictoryClip, 1f);
+            audioSource.PlayOneShot(VictoryClip, .9f);
             gameOverText.text = "Congratulations, you scored 1 goal!";
         }
         else if (goals == 2) {
-            audioSource.PlayOneShot(VictoryClip, 1f);
+            audioSource.PlayOneShot(VictoryClip, .9f);
             gameOverText.text = "Congratulations, you scored 2 goals!";
         }
         else if (goals == 3)
         {
-            audioSource.PlayOneShot(VictoryClip, 1f);
+            audioSource.PlayOneShot(VictoryClip, .9f);
             gameOverText.text = "Congratulations, you scored 3 goals!";
         }
         gameOverCanvas.SetActive(true);
