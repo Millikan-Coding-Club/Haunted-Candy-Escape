@@ -10,7 +10,6 @@ using UnityEngine.UI;
 public class Ghost : MonoBehaviour {
     public static bool gameOver = false;
     public static int goals = 0;
-    private float gameRestartRefreshWaitTime = 4.00f;
 
     Rigidbody2D rb;
     Animator anim;
@@ -101,7 +100,7 @@ public class Ghost : MonoBehaviour {
         anim.SetBool("Jumping", true);
     }
 
-    private void GameOver() {
+    public void GameOver() {
         gameOver = true;
         Invoke("GameOverScreen", 2);
     }
@@ -117,7 +116,8 @@ public class Ghost : MonoBehaviour {
             audioSource.PlayOneShot(VictoryClip, 1f);
             gameOverText.text = "Congratulations, you scored 2 goals!";
         }
-        else if (goals == 3) {
+        else if (goals == 3)
+        {
             audioSource.PlayOneShot(VictoryClip, 1f);
             gameOverText.text = "Congratulations, you scored 3 goals!";
         }
