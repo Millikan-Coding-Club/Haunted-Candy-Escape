@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Goal : MonoBehaviour {
     public AudioSource audioSource;
     public AudioClip PortalClip;
+    public TextMeshProUGUI portalText;
 
     Animator anim;
 
@@ -19,13 +21,11 @@ public class Goal : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D collider) {
         if (collider.gameObject.tag == "Player" && !Completed) {
             Ghost.goals++;
-
+            portalText.text = Ghost.goals.ToString();
             anim.SetBool("Activated", true);
 
             Completed = true;
-            audioSource.Stop();
             audioSource.PlayOneShot(PortalClip, 6f);
-            Invoke("PlayAudio", 3);
         }
     }
 

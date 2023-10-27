@@ -41,8 +41,8 @@ public class Ghost : MonoBehaviour {
     void Update() 
     {
         horizontal = Input.GetAxisRaw("Horizontal");
-        Debug.Log(goals);
-        if (goals >= 3) {
+        if (goals == 3)
+        {
             GameOver();
         }
     }
@@ -120,8 +120,8 @@ public class Ghost : MonoBehaviour {
         }
         else if (goals == 3)
         {
-            audioSource.PlayOneShot(VictoryClip, .9f);
-            gameOverText.text = "Congratulations, you scored 3 goals!";
+            audioSource.PlayOneShot(VictoryClip, .5f);
+            gameOverText.text = "Congratulations, you won!";
         }
         gameOverCanvas.SetActive(true);
     }
