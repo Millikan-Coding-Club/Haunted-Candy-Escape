@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -1855071621389027942}
   m_Layer: 0
   m_Name: ProjectileTrap
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -150,5 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Spike: {fileID: 610439803170003117, guid: a0c64cb8a671a4e738ec566ef3011937, type: 3}
-  TimeBeforeStart: 1
-  TimeInterval: 3
+  InitialFireMin: 1
+  InitialFireMax: 10
+  IntervalFireMin: 2.5
+  IntervalFireMax: 6
